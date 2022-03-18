@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}
+    Demand List
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <a class="btn btn-primary" href="{{ url_for("demand.demand_add") }}" style="margin-top: 20px">新增</a>
+    <table class="table" style="margin-top: 20px; width: 1450px">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">需求名称</th>
+            <th scope="col">产品经理</th>
+            <th scope="col">开发人员</th>
+            <th scope="col">测试人员</th>
+            <th scope="col">提测时间</th>
+            <th scope="col">上线时间</th>
+            <th scope="col">项目状态</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        {% for demands in demand %}
+
+            <tbody>
+            <tr>
+                <th scope="row">{{ demands.id }}</th>
+                <td><a href="{{ demands.demand_href }}" target="_blank">{{ demands.demand_name }}</a></td>
+                <td>{{ demands.pm_name }}</td>
+                <td>{{ demands.rd_name }}</td>
+                <td>{{ demands.test_name }}</td>
+                <td>{{ demands.test_time }}</td>
+                <td>{{ demands.online_time }}</td>
+                {% if demands.status == 0 %}
+                    <td>未提测</td>
+                {% elif demands.status == 1 %}
+                    <td>测试中</td>
+                {% else %}
+                    <td>测试完成</td>
+
+                {% endif %}
+
+                {% if demands.status == 0 %}
+                    <td><a href="{{ url_for("demand.demand_status", id=demands.id) }}">已提测</a></td>
+                    <td><a href="{{ url_for("demand.demand_update", update_id=demands.id) }}">修改</a></td>
+                    <td><a href="{{ url_for("demand.demand_delete", delete_id=demands.id) }}">删除</a></td>
+                {% elif demands.status == 1 %}
+                    <td><a href="{{ url_for("demand.demand_status", id=demands.id) }}">测试完成</a></td>
+                {% else %}
+                    <td><a href="https://ak2.voglassdc.com/" target="_blank">完成</a></td>
+                {% endif %}
+
+            </tr>
+            </tbody>
+
+
+        {% endfor %}
+
+    </table>
+
+    {#    当前页数：{{ paginate.page }}#}
+    {#    <br>#}
+    {#    总页数：{{ paginate.pages }}#}
+    {#    <br>#}
+    {#    一共有{{ paginate.total }}条数据#}
+    {#    <br>#}
+    <nav aria-label="Page navigation example" style="margin-top: 300px">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                {% if paginate.has_prev %}
+                    <a class="page-link" href="/demand/list?page={{ paginate.prev_num }}">Previous</a>
+                {% endif %}
+            </li>
+            {% for i in paginate.iter_pages() %}
+                <li class="page-item"><a class="page-link" href="/demand/list?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            <li class="page-item">
+                {% if paginate.has_next %}
+                    <a class="page-link" href="/demand/list?page={{ paginate.next_num }}">Next</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Update Question{% endblock %}
+{% block head %}{% endblock %}
+
+{% block body %}
+    <div class="row" style="margin-top: 20px;">
+        <div class="col"></div>
+        <div class="col-8">
+            <h1 style="text-align: center;">修改接口</h1>
+            <form action="{{ url_for("qa.update", update_id=update_id) }}" method="POST">
+                <div class="form-group">
+                    <input type="text" name="modular" class="form-control" placeholder="请输入接口所属模块" value="{{ list.modular }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="请修改接口路径" value="{{ list.title }}">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="request_method">
+                        <option name="request_method">{{ list.request_method }}</option>
+                        <option name="request_method">GET</option>
+                        <option name="request_method">POST</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="content" class="form-control" rows="10" placeholder="请修改入参">{{ list.content }}</textarea>
+                </div>
+
+                {% for message in get_flashed_messages() %}
+                    <div class="form-group">
+                        <div class="text-danger">{{ message }}</div>
+                    </div>
+                {% endfor %}
+
+                <div class="form-group" style="text-align: right;">
+                    <button class="btn btn-primary" type="submit">提交修改</button>
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endblock %}

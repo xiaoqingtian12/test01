@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+User Center
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <p class="display-4" style="color: black; margin-left: 400px; margin-top: 30px">用户列表</p>
+    <table class="table" style="margin-top: 100px">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">用户名</th>
+            <th scope="col">邮箱</th>
+            <th scope="col">手机号</th>
+            <th scope="col">创建时间</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        {% for user in user_list %}
+
+            <tbody>
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.mobile }}</td>
+                <td>{{ user.join_time }}</td>
+                <td><a href="#">#</a></td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+{% endblock %}

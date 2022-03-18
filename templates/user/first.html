@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>First</title>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap@4.6.min.css') }}">
+    <script src="{{ url_for('static',filename='jquery/jquery.3.6.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/register.js') }}"></script>
+    <script src="{{ url_for('static',filename='jquery/jquery.3.5.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.4.6.1.js') }}"></script>
+
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">尚层装饰-信息中心</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for("qa.first") }}">首页</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for("demand.demand_list") }}">需求列表</a>
+                </li>
+
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-expanded="false">
+                        造数中心
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" style="color: black; margin: 10px;"
+                           href="{{ url_for("api.get_token") }}">->获取Token<-</a>
+                    </div>
+                </div>
+
+                <div class="dropdown" style="margin-left: 10px">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-expanded="false">
+                        接口管理
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" style="color: black; margin: 10px;"
+                           href="{{ url_for("qa.public_question") }}">->发布接口<-</a>
+
+                        </a>
+                        <a class="dropdown-item" style="color: black; margin: 10px"
+                           href="{{ url_for("qa.question_list") }}">->查看接口<-</a>
+                    </div>
+                </div>
+
+                <div class="dropdown" style="margin-left: 10px">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-expanded="false">
+                        测试工具
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" style="color: black; margin: 10px;"
+                           href="https://www.json.cn/" target="_blank">->Json转换<-</a>
+
+                        </a>
+                        <a class="dropdown-item" style="color: black; margin: 10px"
+                           href="http://bjtime.cn/riqi/" target="_blank">->时间计算器<-</a>
+
+                        <a class="dropdown-item" style="color: black; margin: 10px"
+                           href="{{ url_for("api.send_ding") }}">->日志提醒<-</a>
+                    </div>
+                </div>
+
+
+            </ul>
+            <ul class="navbar-nav">
+                {% if user %}
+                    <li class="nav-item">
+                        <span class="nav-link">当前登录用户：{{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for("user.logout") }}">退出登录</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 30px;">
+                        <a type="button" class="btn btn-secondary" href="{{ url_for("center.center_list") }}">个人中心</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/login">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/register">注册</a>
+                    </li>
+                    <li class="nav-itme ml-3">
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+</nav>
+<div class="jumbotron">
+    <h1 class="display-4">Hello, {{ user.username }}</h1>
+    <p class="lead">欢迎来到信息中心自动化测试平台！</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="{{ url_for("qa.about_more") }}" role="button">了解更多</a>
+</div>
+<div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-success" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-danger" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-warning" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-info" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-light" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-dark" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+</body>
+
+</html>

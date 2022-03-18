@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Add Demand
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <h4 style="margin-top: 30px; margin-left: 500px">新增测试需求</h4>
+    <form style="margin-top: 30px" method="POST" action="{{ url_for("demand.demand_add") }}">
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">需求名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="demand_name" id="demand_name" placeholder="请输入需求名称">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">需求链接</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="demand_href" id="demand_href" placeholder="请输入需求文档链接">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">产品经理</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="pm_name" id="pm_name" placeholder="请输入产品经理姓名">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">开发人员</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="rd_name" id="rd_name" placeholder="请输入开发人员姓名">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">测试人员</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="test_name" id="test_name" placeholder="请输入测试人员姓名">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">提测时间</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="test_time" id="test_time" placeholder="请选择提测时间">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">上线时间</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="online_time" id="online_time" placeholder="请选择上线时间">
+            </div>
+        </div>
+        {% for message in get_flashed_messages() %}
+            <div class="form-group">
+                <div class="text-danger" style="margin-left: 500px">{{ message }}</div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success" style="margin-top: 100px; margin-left: 500px">提交信息</button>
+
+    </form>
+
+
+{% endblock %}
